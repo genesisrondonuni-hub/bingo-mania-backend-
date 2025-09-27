@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "nombre": "Admin",
+    "apellido": "Sistema",
+    "email": "admin@bingomania.com",
+    "password_hash": "scrypt:32768:8:1$KqNfzZM07JiHr5M9$dfcc1ef133462cf61e48ca2ae2f48e234ef421f5a2ee236c5842b6ef237b8d65ec89897a4d3a2c2fcd3f0f5673da91a04ae803c73d11306c676fbeed3432cb6f",
+    "telefono": "+58 412 123 4567",
+    "tokens": 1000,
+    "is_admin": true,
+    "fecha_registro": "2024-09-27T15:30:00"
+  }
+]
