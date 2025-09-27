@@ -21,7 +21,22 @@ app.config['SECRET_KEY'] = 'bingo-mania-secret-key-2024'
 app.config['JWT_SECRET_KEY'] = 'jwt-secret-key-bingo-mania-2024'
 
 # Base de datos
-app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.path.dirname(__file__), 'database', 'app.db')}"
+DATA_DIR = '/var/data'
+DATABASE_NAME = 'app.db'
+
+if 'RENDER' in os.environ:
+    # En producción (Render), usa el disco persistente
+    if not os.path.exists(DATA_DIR):
+        os.makedirs(DATA_DIR)
+    database_path = os.path.join(DATA_DIR, DATABASE_NAME)
+else:
+    # En desarrollo local, usa una carpeta local
+    local_db_dir = os.path.join(os.path.dirname(__file__), 'database')
+    if not os.path.exists(local_db_dir):
+        os.makedirs(local_db_dir)
+    database_path = os.path.join(local_db_dir, DATABASE_NAME)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{database_path}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicializar extensiones
